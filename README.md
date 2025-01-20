@@ -21,6 +21,8 @@ Clone this repository then enter directory. Otherwise download the ZIP archive o
 
 ## Usage
 
+NOTE: When running PDP-Miner from a desktop computer, use option -s to avoid using the SLURM job scheduler when not available.
+
 ```
 ./pdpminer.sh -i PATH/TO/GENOME/FASTA
               -c Number of threads per Pharokka job
