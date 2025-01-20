@@ -1,4 +1,4 @@
-# PDP-Miner: 
+# PDP-Miner: an AI/ML tool to detect prophage tail proteins with depolymerase domains across thousands of bacterial genomes
 A wrapper for DePolymerase-Predictor for searching phage tail depolymerases directly from genomic FASTA sequences. Annotates phage tail proteins first (with Pharokka), then runs DePP on this subset. Pfam domains are then annotated to corroborate DePP predictions for each gene candidate.
 
 Implemented in Bash, supported on native Linux or WSL and supports submitting subtasks to a SLURM workload queue. This software is free and open source under the GNU General Public License v3.0.
