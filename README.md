@@ -42,4 +42,8 @@ bash install.sh
 bash pdpminer.sh -i testdata -c 4 -p 0.8 -m 2 -s
 ```
 
+# How to cite
+The manuscript supporting this work is currently under review; a preprint will be added shortly. Nevertheless this work can either be cited with this repo's URL, or via this temporary citation:
+
+* Gauthier J, Kukavica-Ibrulj I, Levesque RC. (2025) PDP-Miner: an AI/ML tool to detect prophage tail proteins with depolymerase domains across thousands of bacterial genomes (in prep.)
 
