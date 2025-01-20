@@ -50,7 +50,7 @@ Please report any issues/bugs or quality-of-life improvements in the Issues tab 
 ---
 
 # Acknowledgements
-Thanks to Magill and Skortsov for developing Depolymerase-Predictor (Magill and Skvortsov 2023), which served as the main engine of this genome mining workflow.
+Thanks to Magill and Skortsov for developing Depolymerase-Predictor (https://github.com/DamianJM/Depolymerase-Predictor), which served as the main engine of this genome mining workflow.
 
 ---
 
