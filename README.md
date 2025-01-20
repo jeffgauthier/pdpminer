@@ -42,6 +42,18 @@ bash install.sh
 bash pdpminer.sh -i testdata -c 4 -p 0.8 -m 2 -s
 ```
 
+---
+
+# Bugs/issues
+Please report any issues/bugs or quality-of-life improvements in the Issues tab for by email: jeff.gauthier.1@ulaval.ca
+
+---
+
+# Acknowledgements
+Thanks to Magill and Skortsov for developing Depolymerase-Predictor (Magill and Skvortsov 2023), which served as the main engine of this genome mining workflow.
+
+---
+
 # How to cite
 The manuscript supporting this work is currently under review; a preprint will be added shortly. Nevertheless this work can either be cited with this repo's URL, or via this temporary citation:
 
