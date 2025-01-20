@@ -45,12 +45,12 @@ bash pdpminer.sh -i testdata -c 4 -p 0.8 -m 2 -s
 ---
 
 # Bugs/issues
-Please report any issues/bugs or quality-of-life improvements in the Issues tab for by email: jeff.gauthier.1@ulaval.ca
+I consider this software to still be in the Alpha stage. Though functional, it requires several improvements to ensure its reliability and usefulness. Please report any issues/bugs or quality-of-life requests in the Issues tab or by email: jeff.gauthier.1@ulaval.ca
 
 ---
 
 # Acknowledgements
-Thanks to Magill and Skortsov for developing Depolymerase-Predictor (https://github.com/DamianJM/Depolymerase-Predictor), which served as the main engine of this genome mining workflow.
+Thanks to Magill and Skvortsov for developing Depolymerase-Predictor (https://github.com/DamianJM/Depolymerase-Predictor), which served as the main engine of this genome mining workflow.
 
 ---
 
