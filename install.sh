@@ -74,6 +74,9 @@ else
 	# test Pharokka installation
 	conda activate pharokka_1.7.4
 	install_databases.py -o db
+	
+	# fix phanotate version parsing error by force
+	sed -i 's/phanotate_version = phan_out.decode().strip()/phanotate_version = "1.5.1"/' $CONDA_PREFIX/bin/input_commands.py
 	pharokka.py -h
 
 	# add protein domain annotator (pfamscan) and seqtk to subset candidate proteins
