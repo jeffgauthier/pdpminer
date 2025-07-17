@@ -179,17 +179,17 @@ if [ -z $LIMIT ]; then
 fi
 
 
-#######################################################################################
+# #######################################################################################
 
 
-#---------------------------------------------------
-# STEP 1 - ANNOTATE PHAGE GENES
-# This step produces Prokka-like annotations for each
-# genome FASTA in the user input directory.
-# Annotations are returned in the pharokka_out folder,
-# with each individual genome annotations in separate subfolders.
-# Logfiles are kept for each genome FASTA annotation.
-#---------------------------------------------------
+# #---------------------------------------------------
+# # STEP 1 - ANNOTATE PHAGE GENES
+# # This step produces Prokka-like annotations for each
+# # genome FASTA in the user input directory.
+# # Annotations are returned in the pharokka_out folder,
+# # with each individual genome annotations in separate subfolders.
+# # Logfiles are kept for each genome FASTA annotation.
+# #---------------------------------------------------
 
 # output directory is same as input dir plus suffix
 export OUTDIR="$(basename $FASTA_DIR)_out"
@@ -472,7 +472,7 @@ COUNTER=1; for DEPP in $OUTDIR/temp/depp/*_depp_annotated.csv; do
 		grep $GENE $OUTDIR/temp/pfamscan/$NAME\_proteins.pfamscan.txt >$OUTDIR/temp/pfamscan/$NAME\_proteins.pfamscan.$GENE.txt
 
 		# store domains as (PFNUMBER__NAME), SEPARATE WITH SEMICOLON, then remove all whitespace including newline, THEN REMOVE TRAILING SEMICOLON
-		DOMAINS=$(grep -oP "PF.*?Domain" $OUTDIR/temp/pfamscan/$NAME\_proteins.pfamscan.$GENE.txt | sed 's/ *Domain/;/g' | sed 's/  */:/g' | tr -d '[:space:]' | sed -E 's/\;$//')
+		DOMAINS=$(grep -oP "PF.*?Domain|PF.*?Family" $OUTDIR/temp/pfamscan/$NAME\_proteins.pfamscan.$GENE.txt | sed -E 's/ *Domain.*| *Family.*/;/g' | sed 's/  */:/g' | tr -d '[:space:]' | sed -E 's/\;$//')
 
 		# if no domains then write none
 		if [ -z "$DOMAINS" ]; then
