@@ -20,7 +20,7 @@ if [ -z "$CONDA_PREFIX" ]; then
         echo "--------------------------------------------------"
         echo "ERROR: Miniconda3 environment not found!"
         echo "--------------------------------------------------"
-	echo "Download and install Miniconda3 for Linux;"
+	    echo "Download and install Miniconda3 for Linux;"
         echo "Then, run install.sh prior to running pdpminer.sh"
         echo "--------------------------------------------------"
         exit 1
@@ -30,15 +30,13 @@ else
 	source $CONDA_PREFIX/etc/profile.d/conda.sh
 fi
 
-# check that dependencies from install.sh are installed
-DEPP_PATH=$(realpath -e $CONDA_PREFIX/envs/depp_cli)
-PHAR_PATH=$(realpath -e $CONDA_PREFIX/envs/pharokka_1.7.4)
-PFAM_PATH=$(realpath -e $CONDA_PREFIX/envs/pfamscan_1.6)
-if [ -z "$DEPP_PATH" ] || [ -z "$PHAR_PATH" ]; then
+# check that pdpminer conda env is activated
+if [[ $CONDA_PREFIX == "*pdpminer_env*" ]; then
 	echo "--------------------------------------------------"
-	echo "ERROR: Missing dependencies"
+	echo "ERROR: Environment not activated"
 	echo "--------------------------------------------------"
-	echo "Please run install.sh prior to running pdpminer.sh"
+	echo "Please follow install.sh instructions before" 
+	echo "running pdpminer.sh"
 	echo "--------------------------------------------------"
 	exit 1
 fi
@@ -88,13 +86,13 @@ USAGE
               -c Number of threads per Pharokka job
               -p minimum probability threshold (default 0.5)
               -m max number of concurrent jobs per step (default 5)
-              -s DO NOT use SLURM grid
+              -s Use SLURM grid
 "
 }
 
-# SLURM GRID COMMANDS (will be run by default unless -s is provided)
-SCMD="srun -c $CPUS --mem 20G"
-SCMD2="srun -c 1 --mem 10G"
+# SLURM GRID COMMANDS (default unset unless -s is provided)
+unset SCMD
+unset SCMD2
 
 # option string for getopts
 OPTSTRING="si:c:p:m:"
@@ -124,9 +122,9 @@ while getopts ${OPTSTRING} opt; do
 			;;
 
 		s)
-			unset SCMD
-			unset SCMD2
-			echo "NOT using SLURM grid!"
+			SCMD="srun -c $CPUS --mem 20G"
+			SCMD2="srun -c 1 --mem 10G"
+			echo "Using SLURM grid!"
 			echo ""
 			;;
 
