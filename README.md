@@ -18,7 +18,7 @@ Tested on both Ubuntu Linux v24.04 (via WSL) and OpenSUSE Linux Leap v15.5.
 
 Clone this repository then enter directory. Otherwise download the ZIP archive on GitHub and extract its contents in a new folder. 
 
-Then, run the script `install.sh` to install all dependencies and databases required.
+Then, run the script `install.sh` to install all dependencies and databases required in an isolated conda environment (`pdpminer_env`).
 
 ---
 
