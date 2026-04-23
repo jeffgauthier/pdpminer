@@ -81,9 +81,9 @@ else
 	wget $PFAM_URL/Pfam-A.hmm.gz
 	wget $PFAM_URL/active_site.dat.gz
 	mkdir $CONDA_PREFIX/pfam_db
-	gunzip -cv Pfam-A.hmm.dat.gz > $CONDA_PREFIX/pfamdb/Pfam-A.hmm.dat
-	gunzip -cv Pfam-A.hmm.gz > $CONDA_PREFIX/pfamdb/Pfam-A.hmm
-	gunzip -cv active_site.dat.gz > $CONDA_PREFIX/pfamdb/active_site.dat
+	gunzip -cv Pfam-A.hmm.dat.gz > $CONDA_PREFIX/pfam_db/Pfam-A.hmm.dat
+	gunzip -cv Pfam-A.hmm.gz > $CONDA_PREFIX/pfam_db/Pfam-A.hmm
+	gunzip -cv active_site.dat.gz > $CONDA_PREFIX/pfam_db/active_site.dat
 	rm -v Pfam-A.hmm.gz Pfam-A.hmm.dat.gz active_site.dat.gz
 	hmmpress $CONDA_PREFIX/pfamdb/Pfam-A.hmm
 
