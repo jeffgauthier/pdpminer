@@ -50,9 +50,6 @@ else
 	# set flexible channel priority
 	conda config --set channel_priority flexible
 
-	# remove previous installation
-	conda env remove -y -n pdpminer_env; rm -rf Depolymerase-Predictor
-
 	# create conda env for all dependencies
 	conda create -y -n pdpminer_env -c bioconda -c conda-forge \
 		pharokka=1.7.1 \
@@ -86,6 +83,15 @@ else
 	gunzip -cv active_site.dat.gz > $CONDA_PREFIX/pfam_db/active_site.dat
 	rm -v Pfam-A.hmm.gz Pfam-A.hmm.dat.gz active_site.dat.gz
 	hmmpress $CONDA_PREFIX/pfam_db/Pfam-A.hmm
+
+	# install Depolymerase-Predictor in conda env
+	cd $CONDA_PREFIX
+	git clone https://github.com/DamianJM/Depolymerase-Predictor.git
+
+	# test installation
+	APP="$CONDA_PREFIX/Depolymerase-Predictor/DePP_CLI/depp_cli.py"
+    $APP -h
+	
 
 	# go back to conda base env
 	conda deactivate
