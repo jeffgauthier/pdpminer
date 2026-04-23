@@ -30,7 +30,7 @@ PDP-Miner automatically activates the installed environments as it needs them. T
               -c Number of threads per Pharokka job
               -p minimum probability threshold (default 0.5)
               -m max number of concurrent jobs per step (default 5)
-              -s DO NOT use SLURM grid
+              -s Use SLURM grid
 ```
 
 Therefore, to analyse the test data provided in this repo on a desktop computer, the following need to be done to launch PDP-Miner with 4 threads per step, a minimum DePP score threshold of 0.8 and a max number of concurrent jobs of 2, without SLURM scheduling (which would be uncommon outside from a compute server):
@@ -39,7 +39,7 @@ Therefore, to analyse the test data provided in this repo on a desktop computer,
 git clone jeffgauthier/pdpminer.git
 cd pdpminer
 bash install.sh
-bash pdpminer.sh -i testdata -c 4 -p 0.8 -m 2 -s
+bash pdpminer.sh -i testdata -c 4 -p 0.8 -m 2
 ```
 
 ---
