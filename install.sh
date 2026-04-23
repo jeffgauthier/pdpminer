@@ -21,6 +21,9 @@
 # to help the user retrieve it first.
 #---------------------------------------------------
 
+# capture current dir
+INSTALL_DIR=$(pwd)
+
 # crash if a step fails
 set -euo pipefail
 
@@ -87,14 +90,22 @@ else
 	# install Depolymerase-Predictor in conda env
 	cd $CONDA_PREFIX
 	git clone https://github.com/DamianJM/Depolymerase-Predictor.git
-
+    
+	# go back to install dir
+	cd $INSTALL_DIR
+	
 	# test installation
 	APP="$CONDA_PREFIX/Depolymerase-Predictor/DePP_CLI/depp_cli.py"
     $APP -h
-	
 
+	# copy pdpminer.sh to conda env
+	cp -v pdpminer.sh $CONDA_PREFIX/bin
+	
 	# go back to conda base env
 	conda deactivate
-	echo "INFO: Installation complete."
-
+	echo "
+	INFO: Installation complete.
+	Test installation with:
+	    conda activate pdpminer_env
+		"
 fi
