@@ -24,14 +24,10 @@ if [ -z "$CONDA_PREFIX" ]; then
         echo "Then, run install.sh prior to running pdpminer.sh"
         echo "--------------------------------------------------"
         exit 1
-else
-	# load default conda base environment where dependencies
-	# should be installed (see snippet below).
-	source $CONDA_PREFIX/etc/profile.d/conda.sh
 fi
 
 # check that pdpminer conda env is activated
-if [[ $CONDA_PREFIX == "*pdpminer_env*" ]; then
+if [[ $CONDA_PREFIX == "*pdpminer_env*" ]]; then
 	echo "--------------------------------------------------"
 	echo "ERROR: Environment not activated"
 	echo "--------------------------------------------------"
