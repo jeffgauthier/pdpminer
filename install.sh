@@ -21,6 +21,9 @@
 # to help the user retrieve it first.
 #---------------------------------------------------
 
+# crash if a step fails
+set -euo pipefail
+
 # load conda base environment if available, otherwise exit
 #if true; then
 if [ -z "$CONDA_PREFIX" ]; then
@@ -44,60 +47,44 @@ else
 	# load Miniconda3 base environment
 	source $CONDA_PREFIX/etc/profile.d/conda.sh
 
-	# set strict channel priority
+	# set flexible channel priority
 	conda config --set channel_priority flexible
 
 	# remove previous installation
-	conda env remove -y -n depp_cli; rm -rf Depolymerase-Predictor
+	conda env remove -y -n pdpminer_env; rm -rf Depolymerase-Predictor
 
-	# download DePP (Depolymerase-Predictor)
-	git clone https://github.com/DamianJM/Depolymerase-Predictor.git
+	# create conda env for all dependencies
+	conda create -y -n pdpminer_env -c bioconda -c conda-forge \
+		pharokka=1.7.1 \
+		pfamscan>=1.6 \
+		python>=3.9 \
+		biopython>=1.77 \
+		numpy>=1.22 \
+		pandas>=1.4 \
+		scikit-learn>=1.1 \
+		seqtk
+	conda activate pdpminer_env
 
-	# go to directory
-	cd Depolymerase-Predictor/DePP_CLI/
-
-	# create environment for DePP (Depolymerase-Predictor)
-	conda env create -y -f ./environment.yml
-	conda activate depp_cli
-
-	# go back
-	cd ../../
-
-	# test DePP installation
-	APP="Depolymerase-Predictor/DePP_CLI/depp_cli.py"
-	$APP -h
-
-	# add phage annotator (pharokka)
-	conda env remove -y -n pharokka_1.7.4
-	conda create -y -n pharokka_1.7.4 -c bioconda -c conda-forge pharokka=1.7.4
-
-	# test Pharokka installation
-	conda activate pharokka_1.7.4
-	install_databases.py -o db
-	
-	# fix phanotate version parsing error by force
-	sed -i 's/phanotate_version = phan_out.decode().strip()/phanotate_version = "1.5.1"/' $CONDA_PREFIX/bin/input_commands.py
+	# add Pharokka db and test installation
+	install_databases.py -o $CONDA_PREFIX/pharokka_db
 	pharokka.py -h
 
-	# add protein domain annotator (pfamscan) and seqtk to subset candidate proteins
-	conda env remove -y -n pfamscan_1.6
-	conda create -y -n pfamscan_1.6 -c bioconda -c conda-forge pfam_scan=1.6 seqtk
-
 	# test pfam_scan
-	conda activate pfamscan_1.6
 	pfam_scan.pl -h
+
+	# test seqtk
 	seqtk
 
 	# install pfam databases
 	wget http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.dat.gz
 	wget http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
 	wget https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/active_site.dat.gz
-	mkdir pfamdb
-	gunzip -c Pfam-A.hmm.dat.gz > pfamdb/Pfam-A.hmm.dat
-	gunzip -c Pfam-A.hmm.gz > pfamdb/Pfam-A.hmm
-	gunzip -c active_site.dat.gz > pfamdb/active_site.dat
-	rm Pfam-A.hmm.gz Pfam-A.hmm.dat.gz active_site.dat.gz
-	hmmpress pfamdb/Pfam-A.hmm
+	mkdir $CONDA_PREFIX/pfam_db
+	gunzip -cv Pfam-A.hmm.dat.gz > $CONDA_PREFIX/pfamdb/Pfam-A.hmm.dat
+	gunzip -cv Pfam-A.hmm.gz > $CONDA_PREFIX/pfamdb/Pfam-A.hmm
+	gunzip -cv active_site.dat.gz > $CONDA_PREFIX/pfamdb/active_site.dat
+	rm -v Pfam-A.hmm.gz Pfam-A.hmm.dat.gz active_site.dat.gz
+	hmmpress $CONDA_PREFIX/pfamdb/Pfam-A.hmm
 
 	# go back to conda base env
 	conda deactivate
