@@ -24,9 +24,6 @@
 # capture current dir
 INSTALL_DIR=$(pwd)
 
-# crash if a step fails
-set -euo pipefail
-
 # load conda base environment if available, otherwise exit
 #if true; then
 if [ -z "$CONDA_PREFIX" ]; then
