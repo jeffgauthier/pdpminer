@@ -264,9 +264,10 @@ COUNTER=1; for FAA in $OUTDIR/temp/pharokka_fix/*_pharokka.faa; do
 	echo "$(date) -- Finding candidate PDPs in $FAA ..."
 
 	# the actual command
-	$SCMD2 Depolymerase-Predictor/DePP_CLI/depp_cli.py \
+	DEPP_DIR="$CONDA_PREFIX/Depolymerase-Predictor/DePP_CLI"
+	$SCMD2 $DEPP_DIR/depp_cli.py \
 		-i $FAA \
-		-t Depolymerase-Predictor/DePP_CLI/TrainingSet/TrainingSet.csv \
+		-t $DEPP_DIR/TrainingSet/TrainingSet.csv \
 		-o $OUTDIR/temp/depp/$(basename $FAA _pharokka.faa)_depp.csv \
 		> $OUTDIR/temp/depp/$(basename $FAA _pharokka.faa)_depp.log 2>&1 && echo "$(date) -- Done for $FAA" &
 
