@@ -97,6 +97,9 @@ else
 
 	# copy pdpminer.sh to conda env
 	cp -v pdpminer.sh $CONDA_PREFIX/bin
+
+	# make it executable
+	chmod +x $CONDA_PREFIX/bin/pdpminer.sh
 	
 	# go back to conda base env
 	conda deactivate
