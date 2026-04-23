@@ -76,9 +76,10 @@ else
 	seqtk
 
 	# install pfam databases
-	wget http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.dat.gz
-	wget http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
-	wget https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/active_site.dat.gz
+	PFAM_URL='http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release'
+	wget $PFAM_URL/Pfam-A.hmm.dat.gz
+	wget $PFAM_URL/Pfam-A.hmm.gz
+	wget $PFAM_URL/active_site.dat.gz
 	mkdir $CONDA_PREFIX/pfam_db
 	gunzip -cv Pfam-A.hmm.dat.gz > $CONDA_PREFIX/pfamdb/Pfam-A.hmm.dat
 	gunzip -cv Pfam-A.hmm.gz > $CONDA_PREFIX/pfamdb/Pfam-A.hmm
