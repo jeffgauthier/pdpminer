@@ -100,9 +100,12 @@ else
 	
 	# go back to conda base env
 	conda deactivate
-	echo "
-	INFO: Installation complete.
-	Test installation with:
-	    conda activate pdpminer_env
-		"
+	echo "------------------------------------------------"
+	echo "INFO: Installation complete."
+	echo "------------------------------------------------"
+	echo "Test installation with:"
+	echo "    $ conda activate pdpminer_env"
+    echo "    $ pdpminer.sh -i testdata -c 4 -p 0.8 -m 2"
+	echo "------------------------------------------------"
+	
 fi
