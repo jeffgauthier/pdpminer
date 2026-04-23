@@ -402,7 +402,7 @@ COUNTER=1; for DEPP in $OUTDIR/temp/depp/*_depp_annotated.csv; do
 	echo "$(date) -- *** Running PFAM_SCAN.PL against candidate PDPs from $NAME ..."
 	$SCMD pfam_scan.pl -as \
 		-fasta $OUTDIR/temp/pfamscan/$NAME\_proteins.faa \
-		-dir pfamdb/ \
+		-dir $CONDA_PREFIX/pfam_db/ \
 		-cpu $CPUS \
 		-outfile $OUTDIR/temp/pfamscan/$NAME\_proteins.pfamscan.txt && \
 		echo "$(date) -- *** DONE PFAM_SCAN.PL against candidate PDPs from $NAME" &
