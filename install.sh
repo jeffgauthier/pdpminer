@@ -55,13 +55,13 @@ else
 
 	# create conda env for all dependencies
 	conda create -y -n pdpminer_env -c bioconda -c conda-forge \
-		pharokka=1.7.1 \
-		pfam_scan>=1.6 \
-		python>=3.9 \
-		biopython>=1.77 \
-		numpy>=1.22 \
-		pandas>=1.4 \
-		scikit-learn>=1.1 \
+		'pharokka=1.7.1' \
+		'pfam_scan>=1.6' \
+		'python>=3.9' \
+		'biopython>=1.77' \
+		'numpy>=1.22' \
+		'pandas>=1.4' \
+		'scikit-learn>=1.1' \
 		seqtk
 	conda activate pdpminer_env
 
