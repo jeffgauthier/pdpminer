@@ -200,9 +200,6 @@ mkdir $OUTDIR/temp/pharokka_out
 mkdir $OUTDIR/temp/pharokka_fix
 mkdir $OUTDIR/temp/depp
 
-# load pharokka
-conda activate pharokka_1.7.4
-
 # run pharokka separately on each genome FASTA with SLURM
 COUNTER=1; for FASTA in $FASTA_DIR/*.fna; do
 
@@ -239,10 +236,6 @@ COUNTER=1; for FASTA in $FASTA_DIR/*.fna; do
 done
 wait && unset COUNTER
 
-# pharokka jobs are finished; deactivate pharokka
-conda deactivate
-
-
 ###################################################################################
 
 
@@ -255,12 +248,8 @@ conda deactivate
 # proteins uselessly to DePP.
 #---------------------------------------------------
 
-# activate DePP
-conda activate depp_cli
-
 # quick fix to accomodate DePP (it does not accept X's in amino acid sequences)
 # CAUTION! If locus tags are fixed, they will mismatch those from DePP...
-
 echo "$(date) -- Fixing missing amino acids (X -> M) to accomodate DePP..."
 for FAA in $OUTDIR/temp/pharokka_out/*/prodigal.faa; do
 	cp $FAA $OUTDIR/temp/pharokka_fix/$(basename $(dirname $FAA))_pharokka.faa
@@ -374,10 +363,6 @@ COUNTER=1; for CSV in $OUTDIR/temp/depp/*_depp.csv; do
 done
 wait && unset COUNTER
 
-# deactivate Depp_CLI conda env
-conda deactivate
-
-
 #######################################################################################################
 
 #---------------------------------------------------
@@ -391,9 +376,6 @@ conda deactivate
 
 # public announcement
 echo "$(date) -- Scanning protein domains within detected candidate PDPs..."
-
-# activate pfamscan env
-conda activate pfamscan_1.6
 
 # make temp output dir for pfamscan and pre-requisites
 mkdir $OUTDIR/temp/pfamscan
