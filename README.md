@@ -42,6 +42,7 @@ Therefore, to analyse the test data provided in this repo on a desktop computer,
 
 ```
 conda activate pdpminer_env
+
 pdpminer.sh -i testdata -c 4 -p 0.8 -m 2
 ```
 
