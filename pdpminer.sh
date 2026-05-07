@@ -211,7 +211,7 @@ COUNTER=1; for FASTA in $FASTA_DIR/*.fna; do
 		-o $OUTDIR/temp/pharokka_out/$PREFIX \
 		-p $PREFIX \
 		-l "CDS" \
-		-d db \
+		-d $CONDA_PREFIX/pharokka_db \
 		-t $CPUS -g prodigal --fast \
 		> $OUTDIR/temp/pharokka_out/$PREFIX\_pharokka.log 2>&1 && echo "$(date) -- $FASTA annotation done!" &
 
