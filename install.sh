@@ -59,7 +59,7 @@ else
 		'numpy>=1.22' \
 		'pandas>=1.4' \
 		'scikit-learn>=1.1' \
-		seqtk
+		'seqtk'
 	conda activate pdpminer_env
 
 	# add Pharokka db and test installation
