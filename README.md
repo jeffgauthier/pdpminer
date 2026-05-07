@@ -30,11 +30,12 @@ NOTE: When running PDP-Miner from a desktop computer, use option -s to  use the 
 
 ```
 conda activate pdpminer_env
+
 pdpminer.sh -i PATH/TO/GENOME/FASTA
-              -c Number of threads per Pharokka job
-              -p minimum probability threshold (default 0.5)
-              -m max number of concurrent jobs per step (default 5)
-              -s Use SLURM grid
+            -c Number of threads per Pharokka job
+            -p minimum probability threshold (default 0.5)
+            -m max number of concurrent jobs per step (default 5)
+            -s Use SLURM grid
 ```
 
 Therefore, to analyse the test data provided in this repo on a desktop computer, the following needs to be done to launch PDP-Miner with 4 threads per step, a minimum DePP score threshold of 0.8 and a max number of concurrent jobs of 2, without SLURM scheduling (which would be uncommon outside from a compute server):
